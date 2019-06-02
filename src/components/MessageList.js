@@ -4,6 +4,6 @@ import Message from './Message'
 
 const MessageList = ({ messages, onMessageClick }) => (
     <ul className = "message-list">
-
+        
     </ul>
 )
