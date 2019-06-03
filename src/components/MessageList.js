@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Message from './Message'
+import { dispatch } from 'react-redux';
 
 const MessageList = ({ messages, displayMessageDetails }) => (
     <ul id = "shout-box-list">

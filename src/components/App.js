@@ -3,6 +3,7 @@ import '../App.css';
 import Navbar from './Navbar';
 import VisibleMessageList from '../containers/VisibleMessageList';
 import AddMessage from '../containers/AddMessage'
+import VisibleMessageDetails from '../containers/VisibleMessageDetails';
 
 
 const App = () => (
@@ -13,6 +14,7 @@ const App = () => (
       </header>
       <AddMessage/>
       <VisibleMessageList/>
+      <VisibleMessageDetails/>
     </div>
 );
 

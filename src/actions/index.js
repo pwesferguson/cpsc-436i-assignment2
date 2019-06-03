@@ -1,5 +1,4 @@
 export const ADD_MESSAGE = 'ADD_MESSAGE';
-export const GET_MESSAGE_DETAILS = 'GET_MESSAGE_DETAILS';
 export const DISPLAY_MESSAGE_DETAILS = 'DISPLAY_MESSAGE_DETAILS';
 
 let nextMessageId = 0;
@@ -14,10 +13,12 @@ export function addMessage(text, timestamp = "unknown time", username = "Anonymo
     }
 }
 
-export function getMessageDetails(id) {
-    console.log(id);
-}
 
-export const displayMessageDetails = message => {
+export const displayMessageDetails = (message) => {
     console.log(message);
+    return {
+        type: DISPLAY_MESSAGE_DETAILS,
+        isDetailsVisible: true,
+        detailedMessage: message
+    }
 }
