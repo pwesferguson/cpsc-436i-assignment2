@@ -1,10 +1,22 @@
 export const ADD_MESSAGE = 'ADD_MESSAGE';
+export const GET_MESSAGE_DETAILS = 'GET_MESSAGE_DETAILS';
 
-export function addMessage(sentText, timeStamp = "unknown time", userName = "Anonymous") {
+let nextMessageId = 0;
+
+export function addMessage(text, timestamp = "unknown time", username = "Anonymous") {
     return {
         type: ADD_MESSAGE,
-        text: sentText,
-        timestamp: timeStamp,
-        username: userName
+        id: nextMessageId++,
+        text,
+        timestamp,
+        username
     }
 }
+
+export const getMessageDetails = id => (
+    //todo
+    {
+        type: GET_MESSAGE_DETAILS,
+        id
+    }
+)
