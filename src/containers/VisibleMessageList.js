@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import MessageList from '../components/MessageList';
-import { getMessageDetails } from '../actions/index';
+import { getMessageDetails, displayMessageDetails } from '../actions/index';
 
 //todo
 const mapStateToProps = state => (
@@ -11,7 +11,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
     {
-        getMessageDetails: getMessageDetails
+        displayMessageDetails: displayMessageDetails
     }
 )
 export default connect(

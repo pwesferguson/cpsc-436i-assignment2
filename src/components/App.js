@@ -6,7 +6,7 @@ import AddMessage from '../containers/AddMessage'
 
 
 const App = () => (
-    <div className="App">
+    <div className="app-text-format">
       <Navbar/>
       <header className="header">
         UBC SHOUTS!

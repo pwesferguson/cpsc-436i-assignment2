@@ -1,5 +1,6 @@
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const GET_MESSAGE_DETAILS = 'GET_MESSAGE_DETAILS';
+export const DISPLAY_MESSAGE_DETAILS = 'DISPLAY_MESSAGE_DETAILS';
 
 let nextMessageId = 0;
 
@@ -13,10 +14,10 @@ export function addMessage(text, timestamp = "unknown time", username = "Anonymo
     }
 }
 
-export const getMessageDetails = id => (
-    //todo
-    {
-        type: GET_MESSAGE_DETAILS,
-        id
-    }
-)
+export function getMessageDetails(id) {
+    console.log(id);
+}
+
+export const displayMessageDetails = message => {
+    console.log(message);
+}

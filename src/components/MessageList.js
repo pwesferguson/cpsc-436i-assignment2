@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Message from './Message'
 
-const MessageList = ({ messages, onMessageClick }) => (
-    <ul className = "message-list">
+const MessageList = ({ messages, displayMessageDetails }) => (
+    <ul id = "shout-box-list">
         {
             messages.map( (message) => 
-            <Message key={message.id} {...message} onClick={() => onMessageClick(message.id)} />
+            <Message key={message.id} {...message} onClick={() => displayMessageDetails(message)} />
             )
         }
     </ul>
