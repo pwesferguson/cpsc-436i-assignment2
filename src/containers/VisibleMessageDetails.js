@@ -10,13 +10,8 @@ const mapStateToProps = state => (
     }
 )
 
-const mapDispatchToProps = dispatch => ({
-    displayMessageDetails: (message) => (
-        dispatch(displayMessageDetails(message))
-    )
-})
+
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(MessageDetails);

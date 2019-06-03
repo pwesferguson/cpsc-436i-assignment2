@@ -13,7 +13,6 @@ export function addMessage(text, timestamp = "unknown time", username = "Anonymo
     }
 }
 
-
 export const displayMessageDetails = (message) => {
     console.log(message);
     return {
