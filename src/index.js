@@ -5,18 +5,12 @@ import * as serviceWorker from './serviceWorker';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import shoutApp from './reducers';
-import {
-    addMessage
-} from './actions';
 
 const store = createStore(shoutApp);
 
 // store.subscribe( () => console.log(store.getState()));
 
-const date = new Date();
-const timeStamp = date.toTimeString();
-console.log(timeStamp);
-store.dispatch(addMessage('test', timeStamp, 'QA'));
+
 
 ReactDOM.render(
     <Provider store={store}>

@@ -8,6 +8,7 @@ import {
 
 const initialState = {
     isDetailsVisible: false,
+    currentUsername: "Anonymous",
     detailedMessage: {},
     messages: [
         // {
@@ -48,13 +49,9 @@ export default function shoutApp(state = initialState, action) {
             })
 
         case UPDATE_USERNAME:
-            const updatedDetails = {
-                ...state.detailedMessage,
-                username: action.username
-            }
             return ({
                 ...state,
-                detailedMessage: updatedDetails
+                currentUsername: action.username
             })
 
         default:

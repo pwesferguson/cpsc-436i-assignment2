@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 const MessageDetails = (props, dispatch) => {
     if (props.isDetailsVisible) {

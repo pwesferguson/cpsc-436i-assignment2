@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import MessageList from '../components/MessageList';
 import { displayMessageDetails } from '../actions/index';
 
-//todo
 const mapStateToProps = state => (
     {
         messages: state.messages
