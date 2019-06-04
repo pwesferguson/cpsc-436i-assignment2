@@ -1,7 +1,9 @@
 // import { combineReducers } from 'redux';
 
 import {
-    ADD_MESSAGE, DISPLAY_MESSAGE_DETAILS,
+    ADD_MESSAGE, 
+    DISPLAY_MESSAGE_DETAILS,
+    UPDATE_USERNAME
 } from '../actions'
 
 const initialState = {
@@ -16,12 +18,16 @@ const initialState = {
         // {text: "this site sure is swell"},
         // {text: "totes, totes"},
         // {text: "OMG CAN ANYONE ELSE EVEN RN???"},
-        // {text: "yee"}
+        {
+            id: 5,
+            text: "LMAOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+            timestamp: "18:21:50 GMT-0700 (Pacific Daylight Time)",
+            username: "sassy_sasquatch_sastrillo"
+        }
     ]
 }
 
 export default function shoutApp(state = initialState, action) {
-    console.log("in reducer");
     switch(action.type) {
         case ADD_MESSAGE:
             return ({
@@ -35,12 +41,22 @@ export default function shoutApp(state = initialState, action) {
             });
 
         case DISPLAY_MESSAGE_DETAILS:
-            console.log('in display message reducer case');
             return ({
                 ...state,
                 isDetailsVisible: action.isDetailsVisible,
                 detailedMessage: action.detailedMessage
             })
+
+        case UPDATE_USERNAME:
+            const updatedDetails = {
+                ...state.detailedMessage,
+                username: action.username
+            }
+            return ({
+                ...state,
+                detailedMessage: updatedDetails
+            })
+
         default:
             return state
     }

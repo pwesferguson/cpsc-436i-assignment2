@@ -137,3 +137,11 @@
   background-color: rgb(31, 30, 30);
   color: white;
 }
+
+.message-details {
+  border: 2px solid;
+  border-color:  rgb(170, 29, 29);
+  background-color: rgb(46, 1, 1);
+  margin-left: 18%;
+  margin-right: 18%;
+}

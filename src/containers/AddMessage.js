@@ -1,19 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addMessage } from '../actions';
+import { addMessage, updateUsername } from '../actions';
+import InputUsername from '../components/InputUsername';
 
 const AddMessage = ({dispatch}) => {
     let input;
-
     return (
         <div>
-            <form defaultValue="Type something!" onSubmit={ (event) => {
+            <InputUsername/>
+            <form onSubmit={ (event) => {
                 event.preventDefault()
                 if (!input.value.trim()) return;
                 dispatch(addMessage(input.value));
                 input.value = '';
             }}>
-                <input ref={(node) => {
+                <input defaultValue="Type something!" ref={(node) => {
                     input = node;
                 }}
                 />

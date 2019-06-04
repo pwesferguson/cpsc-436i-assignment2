@@ -1,9 +1,9 @@
 import React from 'react';
 import '../App.css';
 import Navbar from './Navbar';
-import VisibleMessageList from '../containers/VisibleMessageList';
+import MessageListContainer from '../containers/MessageListContainer';
 import AddMessage from '../containers/AddMessage'
-import VisibleMessageDetails from '../containers/VisibleMessageDetails';
+import MessageDetailsContainer from '../containers/MessageDetailsContainer';
 
 
 const App = () => (
@@ -13,8 +13,8 @@ const App = () => (
         UBC SHOUTS!
       </header>
       <AddMessage/>
-      <VisibleMessageList/>
-      <VisibleMessageDetails/>
+      <MessageDetailsContainer/>
+      <MessageListContainer/>
     </div>
 );
 

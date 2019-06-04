@@ -10,9 +10,8 @@ import {
 } from './actions';
 
 const store = createStore(shoutApp);
-console.log(store.getState()); //todo remove
 
-const unsubscribe = store.subscribe( () => console.log(store.getState()));
+// store.subscribe( () => console.log(store.getState()));
 
 const date = new Date();
 const timeStamp = date.toTimeString();
@@ -29,4 +28,3 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
-// unsubscribe();
