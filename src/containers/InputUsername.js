@@ -13,7 +13,7 @@ const InputUsername = ({dispatch}) => {
                 dispatch(updateUsername(input.value));
                 input.value = '';
             }}>
-                <input defaultValue="Enter Username" ref={(node) => {
+                <input placeholder="Enter Username" ref={(node) => {
                     input = node;
                 }}
                 />

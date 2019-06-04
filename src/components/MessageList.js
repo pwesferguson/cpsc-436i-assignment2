@@ -1,7 +1,8 @@
 import React from 'react'
 import Message from './Message'
 
-const MessageList = ({ messages, displayMessageDetails }) => (
+const MessageList = ({ messages, displayMessageDetails}) => (
+
     <ul id = "shout-box-list">
         {
             messages.map( (message) => 

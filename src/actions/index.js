@@ -2,7 +2,7 @@ export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const DISPLAY_MESSAGE_DETAILS = 'DISPLAY_MESSAGE_DETAILS';
 export const UPDATE_USERNAME = 'UPDATE_USERNAME'
 
-let nextMessageId = 1;
+let nextMessageId = 6;
 const date = new Date();
 
 export function addMessage(text, username = "Anonymous") {

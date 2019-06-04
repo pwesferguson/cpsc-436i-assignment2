@@ -9,9 +9,9 @@ import MessageDetailsContainer from '../containers/MessageDetailsContainer';
 const App = () => (
     <div className="app-text-format">
       <Navbar/>
-      <header className="header">
+      <h1 className="header">
         UBC SHOUTS!
-      </header>
+      </h1>
       <AddMessage/>
       <MessageDetailsContainer/>
       <MessageListContainer/>

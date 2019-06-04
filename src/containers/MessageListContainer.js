@@ -4,7 +4,8 @@ import { displayMessageDetails } from '../actions/index';
 
 const mapStateToProps = state => (
     {
-        messages: state.messages
+        messages: state.messages,
+        detailedMessage: state.detailedMessage
     }
 )
 

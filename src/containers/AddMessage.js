@@ -15,7 +15,7 @@ const AddMessage = ({currentUsername, dispatch}) => {
                 dispatch(addMessage(input.value, currentUsername));
                 input.value = '';
             }}>
-                <input defaultValue="Type something!" ref={(node) => {
+                <input placeholder="Type something!" ref={(node) => {
                     input = node;
                 }}
                 />
