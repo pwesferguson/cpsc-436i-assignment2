@@ -1,27 +1,50 @@
 // import { combineReducers } from 'redux';
 
 import {
-    ADD_MESSAGE, DISPLAY_MESSAGE_DETAILS,
+    ADD_MESSAGE, 
+    DISPLAY_MESSAGE_DETAILS,
+    UPDATE_USERNAME
 } from '../actions'
 
 const initialState = {
     isDetailsVisible: false,
+    currentUsername: "Anonymous",
     detailedMessage: {},
     messages: [
-        // {
-        //     id: 0,
-        //     text: "golly",
+        {
+            id: 1,
+            text: "golly",
+            timestamp: "07:20:50 GMT-0700 (Pacific Daylight Time)",
+            username: "paidActor"
 
-        // },
-        // {text: "this site sure is swell"},
-        // {text: "totes, totes"},
-        // {text: "OMG CAN ANYONE ELSE EVEN RN???"},
-        // {text: "yee"}
+        },
+        {
+            id: 2,
+            text: "this site sure is swell",
+            timestamp: "07:20:59 GMT-0700 (Pacific Daylight Time)",
+            username: "paidActor"
+        },
+        {
+            id: 3,
+            text: "happy birthday john",
+            timestamp: "07:21:50 GMT-0700 (Pacific Daylight Time)",
+            username: "HailinOnUrMom"
+        },
+        {
+            id: 4,
+            text: "YIKESSSSSSSSSSSSSSSSSS",
+            timestamp: "11:11:34 GMT-0700 (Pacific Daylight Time)",
+            username: "WU-DYNASTY"},
+        {
+            id: 5,
+            text: "LMAOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+            timestamp: "18:21:50 GMT-0700 (Pacific Daylight Time)",
+            username: "sassy_sasquatch_sastrillo"
+        }
     ]
 }
 
 export default function shoutApp(state = initialState, action) {
-    console.log("in reducer");
     switch(action.type) {
         case ADD_MESSAGE:
             return ({
@@ -35,12 +58,18 @@ export default function shoutApp(state = initialState, action) {
             });
 
         case DISPLAY_MESSAGE_DETAILS:
-            console.log('in display message reducer case');
             return ({
                 ...state,
                 isDetailsVisible: action.isDetailsVisible,
                 detailedMessage: action.detailedMessage
             })
+
+        case UPDATE_USERNAME:
+            return ({
+                ...state,
+                currentUsername: action.username
+            })
+
         default:
             return state
     }

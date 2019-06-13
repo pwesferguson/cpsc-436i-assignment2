@@ -1,13 +1,25 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 const MessageDetails = (props, dispatch) => {
-    console.log(props);
-    if (props.isDetailsVisible) return (
-        <h1>VISIBLE</h1>
-    ); 
+    if (props.isDetailsVisible) {
+        const message = props.detailedMessage;
+        return (
+        <div className="message-details">
+            <p>
+                <strong>{message.text}</strong> was posted at 
+                <br/>
+                <strong>{message.timestamp}</strong>
+                <br/>
+                by <strong>{message.username}</strong>.
+                <br/>
+                It was message number <strong>{message.id}!</strong>
+            </p>
+            
+        </div>
+        );
+    }
     else return (
-        <br></br>
+        <div/>
     );
 }
 

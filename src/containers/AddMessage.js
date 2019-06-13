@@ -1,19 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addMessage } from '../actions';
+import InputUsername from './InputUsername';
 
-const AddMessage = ({dispatch}) => {
+
+const AddMessage = ({currentUsername, dispatch}) => {
     let input;
-
     return (
         <div>
-            <form defaultValue="Type something!" onSubmit={ (event) => {
+            <InputUsername/>
+            <form onSubmit={ (event) => {
                 event.preventDefault()
                 if (!input.value.trim()) return;
-                dispatch(addMessage(input.value));
+                dispatch(addMessage(input.value, currentUsername));
                 input.value = '';
             }}>
-                <input ref={(node) => {
+                <input placeholder="Type something!" ref={(node) => {
                     input = node;
                 }}
                 />
@@ -23,4 +25,10 @@ const AddMessage = ({dispatch}) => {
     )
 }
 
-export default connect()(AddMessage)
+function mapStateToProps(state) {
+    return {
+        currentUsername: state.currentUsername
+    }
+}
+
+export default connect(mapStateToProps)(AddMessage)
