@@ -3,7 +3,8 @@
 import {
     ADD_MESSAGE, 
     DISPLAY_MESSAGE_DETAILS,
-    UPDATE_USERNAME
+    UPDATE_USERNAME,
+    SET_INITIAL_STATE
 } from '../actions'
 
 const initialState = {
@@ -11,30 +12,30 @@ const initialState = {
     currentUsername: "Anonymous",
     detailedMessage: {},
     messages: [
-        {
-            id: 1,
-            text: "golly",
-            timestamp: "07:20:50 GMT-0700 (Pacific Daylight Time)",
-            username: "paidActor"
+        // {
+        //     id: 1,
+        //     text: "golly",
+        //     timestamp: "07:20:50 GMT-0700 (Pacific Daylight Time)",
+        //     username: "paidActor"
 
-        },
-        {
-            id: 2,
-            text: "this site sure is swell",
-            timestamp: "07:20:59 GMT-0700 (Pacific Daylight Time)",
-            username: "paidActor"
-        },
-        {
-            id: 3,
-            text: "happy birthday john",
-            timestamp: "07:21:50 GMT-0700 (Pacific Daylight Time)",
-            username: "HailinOnUrMom"
-        },
-        {
-            id: 4,
-            text: "YIKESSSSSSSSSSSSSSSSSS",
-            timestamp: "11:11:34 GMT-0700 (Pacific Daylight Time)",
-            username: "WU-DYNASTY"},
+        // },
+        // {
+        //     id: 2,
+        //     text: "this site sure is swell",
+        //     timestamp: "07:20:59 GMT-0700 (Pacific Daylight Time)",
+        //     username: "paidActor"
+        // },
+        // {
+        //     id: 3,
+        //     text: "happy birthday john",
+        //     timestamp: "07:21:50 GMT-0700 (Pacific Daylight Time)",
+        //     username: "HailinOnUrMom"
+        // },
+        // {
+        //     id: 4,
+        //     text: "YIKESSSSSSSSSSSSSSSSSS",
+        //     timestamp: "11:11:34 GMT-0700 (Pacific Daylight Time)",
+        //     username: "WU-DYNASTY"},
         {
             id: 5,
             text: "LMAOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
@@ -45,6 +46,7 @@ const initialState = {
 }
 
 export default function shoutApp(state = initialState, action) {
+    console.log("in reducer");
     switch(action.type) {
         case ADD_MESSAGE:
             return ({
@@ -69,6 +71,13 @@ export default function shoutApp(state = initialState, action) {
                 ...state,
                 currentUsername: action.username
             })
+
+        case SET_INITIAL_STATE:
+            console.log("in SET_INITIAL_STATE reducer case");
+            return {
+                ...state,
+                messages: action.initialState
+            }
 
         default:
             return state
