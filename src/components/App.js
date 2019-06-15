@@ -6,11 +6,12 @@ import AddMessage from '../containers/AddMessage'
 import MessageDetailsContainer from '../containers/MessageDetailsContainer';
 import { setInitialState } from '../actions/index';
 import { connect } from 'react-redux';
+import { messagesPath } from '../apis';
 
 class App extends Component {
 
   getInitialMessages(dispatch) {
-    fetch("http://localhost:8080/test")
+    fetch(messagesPath)
       .then((res) => {
         console.log("in getInitialMessages");
         console.log(res);
