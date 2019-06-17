@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 import MessageListContainer from '../containers/MessageListContainer';
 import AddMessage from '../containers/AddMessage'
 import MessageDetailsContainer from '../containers/MessageDetailsContainer';
-import { setInitialState } from '../actions/index';
+import { setInitialMessagesState } from '../actions/index';
 import { connect } from 'react-redux';
 import { messagesPath } from '../apis';
 
@@ -13,21 +13,15 @@ class App extends Component {
   getInitialMessages(dispatch) {
     fetch(messagesPath)
       .then((res) => {
-        console.log("in getInitialMessages");
-        console.log(res);
         return res.json();
       })
       .then((res) => {
-        console.log("in second then");
-        console.log(res);
-        dispatch(setInitialState(res)); 
+        dispatch(setInitialMessagesState(res)); 
       })
   }
 
   componentWillMount() {
-    console.log("in componentWillMount");
-    this.getInitialMessages(this.props.dispatch);;
-    console.log("after getInitialMessages"); 
+    this.getInitialMessages(this.props.dispatch);
   }
 
   render() {

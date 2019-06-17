@@ -7,7 +7,6 @@ const messages = [
         text: "golly",
         timestamp: "07:20:50 GMT-0700 (Pacific Daylight Time)",
         username: "paidActor"
-
     },
     {
         id: 2,
@@ -41,6 +40,25 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
     const message = req.body;
     messages.push(message);
+});
+
+router.delete('/:id', function (req, res, next) {
+    const messageID = req.params.id;
+    let messageIndex = 0;
+
+    for (let i = 0; i < messages.length; i++) {
+        const message = messages[i];
+        if (message.id == messageID) {
+            break;
+        } 
+        messageIndex++;
+    }
+
+    if (messageIndex === messages.length) {
+        throw new Error('Message was not found');
+    }
+    
+    messages.splice(messageIndex, 1);
 });
 
 module.exports = router;

@@ -14,7 +14,8 @@ const MessageDetails = (props, dispatch) => {
                 <br/>
                 It was message number <strong>{message.id}!</strong>
             </p>
-            
+            <button onClick={() => (props.deleteMessage(message.id))}>Delete Message</button>
+
         </div>
         );
     }

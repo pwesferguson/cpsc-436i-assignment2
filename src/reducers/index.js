@@ -1,11 +1,10 @@
-// import { combineReducers } from 'redux';
-
 import {
     ADD_MESSAGE, 
     DISPLAY_MESSAGE_DETAILS,
     UPDATE_USERNAME,
-    SET_INITIAL_STATE
-} from '../actions'
+    SET_INITIAL_STATE,
+    DELETE_MESSAGE
+} from '../actions' 
 
 const initialState = {
     isDetailsVisible: false,
@@ -15,7 +14,6 @@ const initialState = {
 }
 
 export default function shoutApp(state = initialState, action) {
-    console.log("in reducer");
     switch(action.type) {
         case ADD_MESSAGE:
             return ({
@@ -42,10 +40,19 @@ export default function shoutApp(state = initialState, action) {
             })
 
         case SET_INITIAL_STATE:
-            console.log("in SET_INITIAL_STATE reducer case");
             return {
                 ...state,
-                messages: action.initialState
+                messages: action.initialMessages
+            }
+        
+        case DELETE_MESSAGE:
+            const prevMessages = state.messages;
+            return {
+                ...state,
+                isDetailsVisible: false,
+                messages: prevMessages.filter( (message) => (
+                    message.id !== action.messageID
+                ))
             }
 
         default:

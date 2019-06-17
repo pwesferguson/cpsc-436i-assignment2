@@ -4,8 +4,9 @@ export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const DISPLAY_MESSAGE_DETAILS = 'DISPLAY_MESSAGE_DETAILS';
 export const UPDATE_USERNAME = 'UPDATE_USERNAME';
 export const SET_INITIAL_STATE = 'SET_INITIAL_STATE';
+export const DELETE_MESSAGE = 'DELETE_MESSSAGE';
 
-let nextMessageId = 6;
+let nextMessageId = 0;
 const date = new Date();
 
 export function addMessage(text, username = "Anonymous") {
@@ -47,10 +48,28 @@ export const displayMessageDetails = (message) => {
     }
 }
 
-export const setInitialState = (initialState) => {
-    console.log("in setInitialState action");
+export const setInitialMessagesState = (initialMessages) => {
+    nextMessageId = initialMessages.length + 1;
     return {
         type: SET_INITIAL_STATE,
-        initialState
+        initialMessages
+    }
+}
+
+export const deleteMessage = (messageID) => {
+    fetch(messagesPath + "/" + messageID, {
+        method: 'DELETE',
+        mode: 'cors',
+        cache: 'no-cache', 
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        redirect: 'follow', 
+        referrer: 'no-referrer'
+    })
+    return {
+        type: DELETE_MESSAGE,
+        messageID
     }
 }
