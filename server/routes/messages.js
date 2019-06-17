@@ -42,6 +42,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
+    console.log("in post new message");
     const message = req.body;
     messages.push(message);
     nextMessageID++;
@@ -64,6 +65,20 @@ router.delete('/:id', function (req, res, next) {
     }
     
     messages.splice(messageIndex, 1);
+});
+
+router.post('/edit/:id', function (req, res, next) {
+    const messageID = req.params.id;
+    console.log("in edit id " + messageID);
+
+    for (let i = 0; i < messages.length; i++) {
+        console.log(messages[i]);
+        if (messages[i].id == messageID) {
+            messages[i] = req.body;
+            return;
+        }
+    }
+    throw new Error("could not find message to edit");
 });
 
 module.exports = router;

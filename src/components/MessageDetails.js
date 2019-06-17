@@ -20,9 +20,10 @@ const MessageDetails = (props, dispatch) => {
                     event.preventDefault()
                     if (!input.value.trim()) return;
                     props.editMessage(message, input.value);
-                }}>
+                }
+                }>
                     <input
-                        // todo defaultValue={message.text}
+                        defaultValue={message.text}
                         ref={(node) => {
                             input = node;
                         }}

@@ -61,13 +61,9 @@ export default function shoutApp(state = initialState, action) {
                 ...state,
                 isDetailsVisible: false,
                 messages: state.messages.map( (message) => {
-                    if (message.id === action.oldMessage.id) {
-                        return {
-                            ...message,
-                            text: action.newMessageText
-                        };
-                    }
-                    else return message;
+                    return message.id === action.editedMessage.id ?
+                        action.editedMessage
+                        : message;
                 })
             }
 

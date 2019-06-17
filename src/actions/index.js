@@ -13,7 +13,6 @@ const date = new Date();
 export function addMessage(text, username = "Anonymous") {
     const timestamp = date.toTimeString();
     const message = {
-        type: ADD_MESSAGE,
         id: nextMessageID++,
         text,
         timestamp,
@@ -31,7 +30,10 @@ export function addMessage(text, username = "Anonymous") {
         referrer: 'no-referrer', 
         body: JSON.stringify(message),
     })
-    return message;
+    return {
+        ...message,
+        type: ADD_MESSAGE,
+    };
 }
 
 export const updateUsername = (username) => {
@@ -76,10 +78,12 @@ export const deleteMessage = (messageID) => {
 }
 
 export const editMessage = (oldMessage, newMessageText) => {
-    console.log("in editMessage action, newMessageText = ");
-    console.log(newMessageText);
-    fetch(messagesPath + "/" + oldMessage.id, {
-        method: 'PATCH',
+    const editedMessage = {
+        ...oldMessage,
+        text: newMessageText
+    }
+    fetch(messagesPath + "/edit/" + oldMessage.id, {
+        method: 'POST',
         mode: 'cors',
         cache: 'no-cache', 
         credentials: 'same-origin',
@@ -88,11 +92,10 @@ export const editMessage = (oldMessage, newMessageText) => {
         },
         redirect: 'follow', 
         referrer: 'no-referrer',
-        body: newMessageText
+        body: JSON.stringify(editedMessage)
     });
     return {
         type: EDIT_MESSAGE,
-        oldMessage,
-        newMessageText
+        editedMessage
     }
 }
