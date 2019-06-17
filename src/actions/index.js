@@ -49,7 +49,6 @@ export const displayMessageDetails = (message) => {
 }
 
 export const setInitialMessagesState = (initialMessages) => {
-    console.log("InitialMessages = " + initialMessages);
     nextMessageID = initialMessages.nextMessageID;
     return {
         type: SET_INITIAL_STATE,
