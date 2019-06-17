@@ -16,6 +16,7 @@ class App extends Component {
         return res.json();
       })
       .then((res) => {
+        console.log("initial response = " + res);
         dispatch(setInitialMessagesState(res)); 
       })
   }

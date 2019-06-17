@@ -6,14 +6,14 @@ export const UPDATE_USERNAME = 'UPDATE_USERNAME';
 export const SET_INITIAL_STATE = 'SET_INITIAL_STATE';
 export const DELETE_MESSAGE = 'DELETE_MESSSAGE';
 
-let nextMessageId = 0;
+let nextMessageID = 0;
 const date = new Date();
 
 export function addMessage(text, username = "Anonymous") {
     const timestamp = date.toTimeString();
     const message = {
         type: ADD_MESSAGE,
-        id: nextMessageId++,
+        id: nextMessageID++,
         text,
         timestamp,
         username
@@ -49,10 +49,11 @@ export const displayMessageDetails = (message) => {
 }
 
 export const setInitialMessagesState = (initialMessages) => {
-    nextMessageId = initialMessages.length + 1;
+    console.log("InitialMessages = " + initialMessages);
+    nextMessageID = initialMessages.nextMessageID;
     return {
         type: SET_INITIAL_STATE,
-        initialMessages
+        initialMessages: initialMessages.messages
     }
 }
 

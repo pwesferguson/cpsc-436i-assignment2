@@ -33,13 +33,18 @@ const messages = [
     }
 ]
 
+let nextMessageID = messages[messages.length - 1].id + 1
+
 router.get('/', function (req, res, next) {
-    res.json(messages);
+    res.json({
+        nextMessageID,
+        messages});
 });
 
 router.post('/', function (req, res, next) {
     const message = req.body;
     messages.push(message);
+    nextMessageID++;
 });
 
 router.delete('/:id', function (req, res, next) {
