@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import Navbar from './Navbar';
+// import Navbar from './Navbar';
 import MessageListContainer from '../containers/MessageListContainer';
 import AddMessage from '../containers/AddMessage'
 import MessageDetailsContainer from '../containers/MessageDetailsContainer';
@@ -27,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <div className="app-text-format">
-        <Navbar />
+        {/* <Navbar /> */}
         <h1 className="header">
           UBC SHOUTS!
         </h1>

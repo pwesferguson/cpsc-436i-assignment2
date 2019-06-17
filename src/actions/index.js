@@ -4,7 +4,8 @@ export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const DISPLAY_MESSAGE_DETAILS = 'DISPLAY_MESSAGE_DETAILS';
 export const UPDATE_USERNAME = 'UPDATE_USERNAME';
 export const SET_INITIAL_STATE = 'SET_INITIAL_STATE';
-export const DELETE_MESSAGE = 'DELETE_MESSSAGE';
+export const DELETE_MESSAGE = 'DELETE_MESSAGE';
+export const EDIT_MESSAGE = 'EDIT_MESSAGE'
 
 let nextMessageID = 0;
 const date = new Date();
@@ -71,5 +72,27 @@ export const deleteMessage = (messageID) => {
     return {
         type: DELETE_MESSAGE,
         messageID
+    }
+}
+
+export const editMessage = (oldMessage, newMessageText) => {
+    console.log("in editMessage action, newMessageText = ");
+    console.log(newMessageText);
+    fetch(messagesPath + "/" + oldMessage.id, {
+        method: 'PATCH',
+        mode: 'cors',
+        cache: 'no-cache', 
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        redirect: 'follow', 
+        referrer: 'no-referrer',
+        body: newMessageText
+    });
+    return {
+        type: EDIT_MESSAGE,
+        oldMessage,
+        newMessageText
     }
 }

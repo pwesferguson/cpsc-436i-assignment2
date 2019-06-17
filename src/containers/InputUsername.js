@@ -23,15 +23,6 @@ const InputUsername = ({dispatch}) => {
     )
 }
 
-// const mapStateToProps = (state) => (
-//     state
-// )
-
-// const mapDispatchToProps = (dispatch) => ({
-//     updateUsername
-// })
 
 export default connect(
-    // mapStateToProps,
-    // mapDispatchToProps
 )(InputUsername);

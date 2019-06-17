@@ -3,7 +3,8 @@ import {
     DISPLAY_MESSAGE_DETAILS,
     UPDATE_USERNAME,
     SET_INITIAL_STATE,
-    DELETE_MESSAGE
+    DELETE_MESSAGE,
+    EDIT_MESSAGE
 } from '../actions' 
 
 const initialState = {
@@ -53,6 +54,21 @@ export default function shoutApp(state = initialState, action) {
                 messages: prevMessages.filter( (message) => (
                     message.id !== action.messageID
                 ))
+            }
+        
+        case EDIT_MESSAGE:
+            return {
+                ...state,
+                isDetailsVisible: false,
+                messages: state.messages.map( (message) => {
+                    if (message.id === action.oldMessage.id) {
+                        return {
+                            ...message,
+                            text: action.newMessageText
+                        };
+                    }
+                    else return message;
+                })
             }
 
         default:
