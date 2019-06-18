@@ -68,10 +68,8 @@ router.delete('/:id', function (req, res, next) {
 
 router.post('/edit/:id', function (req, res, next) {
     const messageID = req.params.id;
-    console.log("in edit id " + messageID);
 
     for (let i = 0; i < messages.length; i++) {
-        console.log(messages[i]);
         if (messages[i].id == messageID) {
             messages[i] = req.body;
             return;
