@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MessageDetails = (props, dispatch) => {
+const MessageDetails = (props) => {
     if (props.isDetailsVisible) {
         const message = props.detailedMessage;
         let input;
@@ -16,12 +16,15 @@ const MessageDetails = (props, dispatch) => {
                     It was message number <strong>{message.id}!</strong>
                 </p>
 
-                <form onSubmit={(event) => {
-                    event.preventDefault()
-                    if (!input.value.trim()) return;
-                    props.editMessage(message, input.value);
-                }
-                }>
+                <form
+                    onSubmit={(event) => {
+                        event.preventDefault();
+                        if (!input.value.trim()) return;
+                        props.editMessage(message, input.value);
+                        input.value = '';
+                    }
+                    }
+                >
                     <input
                         defaultValue={message.text}
                         ref={(node) => {

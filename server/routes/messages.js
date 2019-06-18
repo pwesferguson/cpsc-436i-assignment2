@@ -24,7 +24,8 @@ const messages = [
         id: 4,
         text: "YIKESSSSSSSSSSSSSSSSSS",
         timestamp: "11:11:34 GMT-0700 (Pacific Daylight Time)",
-        username: "WU-DYNASTY"},
+        username: "WU-DYNASTY"
+    },
     {
         id: 5,
         text: "LMAOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
@@ -38,7 +39,8 @@ let nextMessageID = messages[messages.length - 1].id + 1
 router.get('/', function (req, res, next) {
     res.json({
         nextMessageID,
-        messages});
+        messages
+    });
 });
 
 router.post('/', function (req, res, next) {
@@ -55,14 +57,14 @@ router.delete('/:id', function (req, res, next) {
         const message = messages[i];
         if (message.id == messageID) {
             break;
-        } 
+        }
         messageIndex++;
     }
 
     if (messageIndex === messages.length) {
         throw new Error('Message was not found');
     }
-    
+
     messages.splice(messageIndex, 1);
 });
 
