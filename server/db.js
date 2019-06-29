@@ -13,6 +13,7 @@ function initDb() {
             console.log(err);
         };
         _db = dbClient.db("ubc-shouts");
+        console.log("db is initialized");
     })
 }
 
