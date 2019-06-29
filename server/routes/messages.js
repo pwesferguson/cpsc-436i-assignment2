@@ -1,79 +1,70 @@
 const express = require("express");
 const router = express.Router();
+const dbExports = require("../db.js");
+const getMessagesCollection = dbExports.getMessagesCollection;
 
-const messages = [
-    {
-        id: 1,
-        text: "golly",
-        timestamp: "07:20:50 GMT-0700 (Pacific Daylight Time)",
-        username: "paidActor"
-    },
-    {
-        id: 2,
-        text: "this site sure is swell",
-        timestamp: "07:20:59 GMT-0700 (Pacific Daylight Time)",
-        username: "paidActor"
-    },
-    {
-        id: 3,
-        text: "happy birthday john",
-        timestamp: "07:21:50 GMT-0700 (Pacific Daylight Time)",
-        username: "HailinOnUrMom"
-    },
-    {
-        id: 4,
-        text: "YIKESSSSSSSSSSSSSSSSSS",
-        timestamp: "11:11:34 GMT-0700 (Pacific Daylight Time)",
-        username: "WU-DYNASTY"
-    },
-    {
-        id: 5,
-        text: "LMAOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
-        timestamp: "18:21:50 GMT-0700 (Pacific Daylight Time)",
-        username: "sassy_sasquatch_sastrillo"
-    }
-]
-
-let nextMessageID = messages[messages.length - 1].id + 1
+let localMessages = [];
+let nextMessageID;
 
 router.get('/', function (req, res, next) {
-    res.json({
-        nextMessageID,
-        messages
-    });
+    const messagesCollection = getMessagesCollection();
+
+    messagesCollection.find({}).toArray((err, docs) => {
+        if (!docs) throw new Error("Could not retrieve messages.")
+        
+        localMessages = docs;
+        nextMessageID = localMessages[localMessages.length - 1].id + 1;
+
+        res.json({
+            nextMessageID,
+            messages: localMessages
+        });
+    })
+
 });
 
 router.post('/', function (req, res, next) {
     const message = req.body;
-    messages.push(message);
+    const messagesCollection = getMessagesCollection();
+    
+    messagesCollection.insertOne(message, (err) => {
+        if (err) console.warn("Warning: was not able to save message. Please refresh and try again.");
+    });
+
+    localMessages.push(message);
     nextMessageID++;
 });
 
 router.delete('/:id', function (req, res, next) {
     const messageID = req.params.id;
     let messageIndex = 0;
+    const messagesCollection = getMessagesCollection();
+    
+    messagesCollection.deleteOne({id: messageID}, (err) => {
+        if (err) console.warn("Warning: was not able to delete message. Please refresh and try again.");
+    });
 
-    for (let i = 0; i < messages.length; i++) {
-        const message = messages[i];
+    for (let i = 0; i < localMessages.length; i++) {
+        const message = localMessages[i];
         if (message.id == messageID) {
             break;
         }
         messageIndex++;
     }
 
-    if (messageIndex === messages.length) {
+    if (messageIndex === localMessages.length) {
         throw new Error('Message was not found');
     }
 
-    messages.splice(messageIndex, 1);
+    localMessages.splice(messageIndex, 1);
 });
 
 router.post('/edit/:id', function (req, res, next) {
     const messageID = req.params.id;
 
-    for (let i = 0; i < messages.length; i++) {
-        if (messages[i].id == messageID) {
-            messages[i] = req.body;
+    for (let i = 0; i < localMessages.length; i++) {
+        if (localMessages[i].id == messageID) {
+            localMessages[i] = req.body;
             return;
         }
     }
