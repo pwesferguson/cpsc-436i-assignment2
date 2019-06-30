@@ -1,6 +1,7 @@
 require('dotenv').config();
 const MongoClient = require('mongodb').MongoClient;
-const uri = process.env.DB_HOST.replace("<username>", process.env.DB_USER).replace("<password>", process.env.DB_PASS);
+const uri = process.env.DB_HOST.replace("<username>", process.env.DB_USER)
+                               .replace("<password>", process.env.DB_PASS);
 
 let _db;
 
