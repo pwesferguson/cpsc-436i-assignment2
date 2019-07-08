@@ -1,0 +1,1 @@
+export const messagesPath = "http://localhost:8080/messages";

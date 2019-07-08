@@ -1,47 +1,17 @@
-// import { combineReducers } from 'redux';
-
 import {
     ADD_MESSAGE, 
     DISPLAY_MESSAGE_DETAILS,
-    UPDATE_USERNAME
-} from '../actions'
+    UPDATE_USERNAME,
+    SET_INITIAL_STATE,
+    DELETE_MESSAGE,
+    EDIT_MESSAGE
+} from '../actions' 
 
 const initialState = {
     isDetailsVisible: false,
     currentUsername: "Anonymous",
     detailedMessage: {},
-    messages: [
-        {
-            id: 1,
-            text: "golly",
-            timestamp: "07:20:50 GMT-0700 (Pacific Daylight Time)",
-            username: "paidActor"
-
-        },
-        {
-            id: 2,
-            text: "this site sure is swell",
-            timestamp: "07:20:59 GMT-0700 (Pacific Daylight Time)",
-            username: "paidActor"
-        },
-        {
-            id: 3,
-            text: "happy birthday john",
-            timestamp: "07:21:50 GMT-0700 (Pacific Daylight Time)",
-            username: "HailinOnUrMom"
-        },
-        {
-            id: 4,
-            text: "YIKESSSSSSSSSSSSSSSSSS",
-            timestamp: "11:11:34 GMT-0700 (Pacific Daylight Time)",
-            username: "WU-DYNASTY"},
-        {
-            id: 5,
-            text: "LMAOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
-            timestamp: "18:21:50 GMT-0700 (Pacific Daylight Time)",
-            username: "sassy_sasquatch_sastrillo"
-        }
-    ]
+    messages: []
 }
 
 export default function shoutApp(state = initialState, action) {
@@ -69,6 +39,33 @@ export default function shoutApp(state = initialState, action) {
                 ...state,
                 currentUsername: action.username
             })
+
+        case SET_INITIAL_STATE:
+            return {
+                ...state,
+                messages: action.initialMessages
+            }
+        
+        case DELETE_MESSAGE:
+            const prevMessages = state.messages;
+            return {
+                ...state,
+                isDetailsVisible: false,
+                messages: prevMessages.filter( (message) => (
+                    message.id !== action.messageID
+                ))
+            }
+        
+        case EDIT_MESSAGE:
+            return {
+                ...state,
+                isDetailsVisible: false,
+                messages: state.messages.map( (message) => {
+                    return message.id === action.editedMessage.id ?
+                        action.editedMessage
+                        : message;
+                })
+            }
 
         default:
             return state

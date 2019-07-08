@@ -14,6 +14,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(displayMessageDetails(message))
     )
 })
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps
