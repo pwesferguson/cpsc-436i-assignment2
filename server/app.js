@@ -8,6 +8,10 @@ var cors = require('cors');
 var messagesRouter = require('./routes/messages');
 
 var app = express();
+const port = '8080';
+app.listen(port, () => {
+  console.log("listening on port ", port);
+});
 
 // view engine setup
 
